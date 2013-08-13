@@ -20,8 +20,16 @@ composer.json:
 
 Configure:
 ```php
-pushover_token('xxxxxxxxxxxxxxxx');
-pushover_user('xxxxxxxxxxxxxxxx');
+pushover_token('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+pushover_user('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+```
+
+User-wide configuration (~/.pushoverrc):
+```json
+{
+  "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "user":  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+}
 ```
 
 Use:

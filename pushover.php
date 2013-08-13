@@ -3,6 +3,17 @@ require 'vendor/autoload.php';
 
 def_accessor('pushover_token');
 def_accessor('pushover_user');
+
+def('bu\pushover\check_global_config', function(){
+  $pth = getenv('HOME').'/.pushoverrc';
+  if(file_exists($pth)){
+    $cfg = json_decode(file_get_contents($pth), true);
+    pushover_token($cfg['token']);
+    pushover_user($cfg['user']);
+  }
+});
+bu\pushover\check_global_config();
+
 def_accessor('pushover_curl_timeout', 5);
 def('bu\pushover\parse_args', function($a){
   $opts = array();
