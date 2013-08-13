@@ -1,8 +1,8 @@
 <?php
 require 'vendor/autoload.php';
 
-def_accessor('pushover_token');
-def_accessor('pushover_user');
+def_accessor('pushover_token', null);
+def_accessor('pushover_user', null);
 
 def('bu\pushover\check_global_config', function(){
   $pth = getenv('HOME').'/.pushoverrc';
@@ -32,11 +32,15 @@ def('bu\pushover\parse_args', function($a){
 });
 
 def('pushover', function(/* $args... */){
+  if(is_null(pushover_token()) or is_null(pushover_user()))
+    return;
   $opts = bu\pushover\parse_args(func_get_args());
   bu\pushover\post_async("https://api.pushover.net/1/messages.json", $opts);
 });
 
 def('pushover_safe', function(/* $args... */){
+  if(is_null(pushover_token()) or is_null(pushover_user()))
+    return;
   $opts = bu\pushover\parse_args(func_get_args());
   $data = bu\pushover\post_sync("https://api.pushover.net/1/messages.json", $opts);
   return json_decode($data, true);
