@@ -34,7 +34,8 @@ pushover(array(
   'message'=>'For more information...',
   'url'=>'https://pushover.net/api'
 ));
-print_r(pushover('How about return value?'));
+
+print_r(pushover_safe('How about return value?'));
 #  Array
 #  (
 #    [status] => 1
